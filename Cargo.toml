@@ -1,0 +1,49 @@
+[package]
+name = "hyprfoil"
+version = "0.1.0"
+edition = "2024"
+authors = ["Shaik Noorullah shaiknooru247@gmail.com"]
+description = "A browser-like tab system for Hyprland"
+documentation = "https://hyprfoil.dev/docs"
+homepage = "https://hyprfoil.dev"
+repository = "https://github.com/shaiknoorullah/hyprfoil"
+license = "MIT"
+readme = "README.md"
+keywords = ["hyprland", "wayland", "tabs", "window-manager"]
+categories = ["gui", "command-line-utilities"]
+
+[package.metadata.hyprland]
+# Track Hyprland version compatibility
+min_version = "0.35.0"
+max_version = "0.48.1"
+
+[dependencies]
+anyhow = "1.0.98"
+clap = {version = "4.5.37", features = ["derive"]}
+directories = "6.0.0"
+env_logger = "0.11.8"
+log = "0.4.27"
+regex = "1.11.1"
+semver = "1.0.26"
+serde = {version = "1.0.219", features = ["derive"]}
+serde_json = "1.0.140"
+thiserror = "2.0.12"
+tokio = {version = "1.44.2", features = ["full"]}
+toml = "0.8.20"
+wayland-client = "0.31.8"
+wayland-protocols = "0.32.6"
+
+[[bench]]
+name = "tab_rendering"
+harness = false
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[dev-dependencies]
+criterion = "0.5.1"
+mockall = "0.13.1"
+tempfile = "3.19.1"
